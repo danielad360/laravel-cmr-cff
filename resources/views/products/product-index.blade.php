@@ -31,7 +31,7 @@
                             <td class="align-middle"> <a href="/products/{{$product->id}}">{{$product->name}}   </a></td>
 
                             <td class="align-middle">£{{$product->price}}</td>
-                            <td class="align-middle">{{$product->stock}}</td>
+                            <td class="align-middle">{{partsPrice($product->id)}}
                             <td class="align-middle">
                                 <div class="row">
                                     <div class="col-2">

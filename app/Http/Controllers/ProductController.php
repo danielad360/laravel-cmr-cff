@@ -16,48 +16,14 @@ class ProductController extends Controller
     public function index()
     {
         $allProducts = Products::all();
-        $parts_id = [];
-        foreach($allProducts as $product)
-        {
-         $decodeParts = json_decode($product->parts);
-         array_push($parts_id, $decodeParts->item->id);
-        }
 
-        $parts_prices = [];
-        foreach($parts_id[0] as $pi)
-        {
-            $part = (Parts::find($pi));
-            array_push($parts_prices, $part->price);
-        }
-        $price_parts = 0;
-        $final_array = [];
-        foreach($allProducts as $product)
-        {
-           $decode_part = json_decode($product->parts, true);
-           $decode_part['item']['prices'] = $parts_prices;
-           $concat_arrays = array_combine($decode_part['item']['quantity'], $decode_part['item']['prices']);
-            $decode_part['item']['total'] = $this->valueIndex($concat_arrays);
-
-            $final_array[] = $decode_part;
-        }
 
         return view('products.product-index', [
             'allProducts' => $allProducts,
-            'finalArray'  => $final_array
         ]);
 
     }
 
-public function valueIndex($array)
-{
-    $count = 0;
-    foreach($array as $item =>$value)
-    {
-        $mnoze = intval($item) * intval($value);
-        $count += $mnoze;
-    }
-    return $count;
-}
 
     /**
      * Show the form for creating a new resource.
