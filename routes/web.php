@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,5 @@ Route::get('/about', function () {
 Route::resources([
     'parts' => PartController::class,
     'products' => ProductController::class,
+    'invocies' => InvoiceController::class
 ]);

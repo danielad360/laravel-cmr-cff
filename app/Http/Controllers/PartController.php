@@ -29,12 +29,6 @@ class PartController extends Controller
         return view('parts.parts-new');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -49,12 +43,6 @@ class PartController extends Controller
 
         return redirect('/parts/create')->with('success', 'Part is successfully saved');    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -73,13 +61,6 @@ class PartController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(int $partID, Request $request, Parts $parts)
     {
         $part = Parts::find($partID);
@@ -105,12 +86,6 @@ class PartController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(int $partID, Parts $parts)
     {
         $part = Parts::find($partID);

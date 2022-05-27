@@ -3,13 +3,9 @@
 @section('main-content')
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ __('Products list') }}</h1>
-
     <div class=" justify-content-center">
-
         <div class="col-lg-12">
-
             <div class="card shadow mb-4">
-
                 <table class="table">
                     <thead>
                     <tr>
@@ -17,21 +13,18 @@
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Parts price</th>
+                        <th scope="col">Profit</th>
                         <th scope="col">Action</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($allProducts as $product)
-
                         <tr>
                             <td class="align-middle"> <img width="100px" src="image/{{$product->image}}"></td>
-
                             <td class="align-middle"> <a href="/products/{{$product->id}}">{{$product->name}}   </a></td>
-
                             <td class="align-middle">£{{$product->price}}</td>
-                            <td class="align-middle">{{$product->stock}}</td>
+                            <td class="align-middle">£{{partsPrice($product->id)}}
+                            <td class="align-middle">£{{profit($product->price, partsPrice($product->id))}}
                             <td class="align-middle">
                                 <div class="row">
                                     <div class="col-2">
@@ -54,11 +47,7 @@
                     @endforeach
                     </tbody>
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
 @endsection

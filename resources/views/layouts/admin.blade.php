@@ -100,6 +100,26 @@
             </a>
         </li>
 
+        <div class="sidebar-heading">
+            {{ __('Invoices') }}
+        </div>
+
+
+        <li class="nav-item ">
+            <a class="nav-link" href="/invocies">
+            <i class="fas fa-fw  fa-th-list"></i>
+                <span>{{ __('All Invoices') }}</span>
+            </a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link" href="/invoices/create">
+                <i class="fas fa-fw fa-plus"></i>
+                <span>{{ __('Add Invoice') }}</span>
+            </a>
+        </li>
+
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

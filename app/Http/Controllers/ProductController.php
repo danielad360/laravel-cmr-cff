@@ -16,48 +16,14 @@ class ProductController extends Controller
     public function index()
     {
         $allProducts = Products::all();
-        $parts_id = [];
-        foreach($allProducts as $product)
-        {
-         $decodeParts = json_decode($product->parts);
-         array_push($parts_id, $decodeParts->item->id);
-        }
 
-        $parts_prices = [];
-        foreach($parts_id[0] as $pi)
-        {
-            $part = (Parts::find($pi));
-            array_push($parts_prices, $part->price);
-        }
-        $price_parts = 0;
-        $final_array = [];
-        foreach($allProducts as $product)
-        {
-           $decode_part = json_decode($product->parts, true);
-           $decode_part['item']['prices'] = $parts_prices;
-           $concat_arrays = array_combine($decode_part['item']['quantity'], $decode_part['item']['prices']);
-            $decode_part['item']['total'] = $this->valueIndex($concat_arrays);
-
-            $final_array[] = $decode_part;
-        }
 
         return view('products.product-index', [
             'allProducts' => $allProducts,
-            'finalArray'  => $final_array
         ]);
 
     }
 
-public function valueIndex($array)
-{
-    $count = 0;
-    foreach($array as $item =>$value)
-    {
-        $mnoze = intval($item) * intval($value);
-        $count += $mnoze;
-    }
-    return $count;
-}
 
     /**
      * Show the form for creating a new resource.
@@ -119,18 +85,15 @@ public function valueIndex($array)
     {
         $product = Products::find($productId);
         $product_parts = json_decode($product->parts);
-
         $array_with_products_ids = $product_parts->item->id;
         $array_with_products_quantity = $product_parts->item->quantity;
         $array_with_combines_products = array_combine($array_with_products_ids, $array_with_products_quantity);
-
         $parts = [];
         $array_with_parts_prices = [];
-        $counter = 0;
+            $counter = 0;
             foreach($array_with_combines_products as $id => $part)
             {
                 $part_index = Parts::find($id);
-
                 $parts['item'][$counter] = [
                     'id' => $part_index->id,
                     'image' => $part_index->image,

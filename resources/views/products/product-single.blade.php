@@ -32,7 +32,9 @@
 
                     <div class="form-group row">
                         <div class="col-sm-6">
-                            <h3>	£{{$product->price}}</h3>{{$parts_price}}
+                            <h3>Product price: £{{$product->price}}</h3>
+                            <h3>Parts price: £{{$parts_price}}</h3>
+                            <h3>Product profit: £{{profit($product->price, $parts_price)}} </h3>
                         </div>
                     </div>
                     <hr class="my-5" />
@@ -48,11 +50,7 @@
                             <div class="col-3 d-flex align-items-center">
                                 <h5 id="partnames" type="text" name="partnames[]" placeholder="Part Name" value="">{{$part['name']}}</h5>
                             </div>
-                            <div class="col-6 d-flex align-items-center">
-                                <img width="100px" src="/image/{{$part['image']}}">
                             </div>
-
-                        </div>
 
                     @endif
                     @endforeach
